@@ -1,0 +1,20 @@
+[DEFAULT]
+pybasedir = /usr/lib/python3/dist-packages
+[api]
+auth_strategy = keystone
+[cors]
+[keystone_authtoken]
+auth_url = http://{{ keepalived_vip }}:{{ keystone_port }}
+memcached_servers = {{ keepalived_vip }}:{{ memcached_port }}
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = placement
+password = {{ placement_password }}
+[oslo_policy]
+policy_dirs = /etc/placement/policy.d
+[placement]
+[placement_database]
+connection = mysql+pymysql://placement:{{ placement_password }}@{{ keepalived_vip }}/placement
+[profiler]

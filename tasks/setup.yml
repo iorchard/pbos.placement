@@ -1,0 +1,33 @@
+---
+- name: Setup | copy init file
+  ansible.builtin.copy:
+    dest: "{{ item.dest }}"
+    src: "{{ ansible_distribution | lower }}{{ item.dest }}"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  loop:
+    - {dest: "/etc/init.d/placement-api"}
+  become: true
+
+- name: Setup | template configuration
+  ansible.builtin.template:
+    dest: "{{ item.dest }}"
+    src: "{{ ansible_distribution | lower }}{{ item.dest + '.j2' }}"
+    owner: "root"
+    group: "{{ os_service_name }}"
+    mode: "0640"
+    backup: true
+  loop:
+    - {dest: "/etc/placement/placement.conf"}
+    - {dest: "/etc/placement/placement-api-uwsgi-bind.ini"}
+  become: true
+  notify:
+    - systemctl restart service
+
+- name: Setup | create db tables
+  ansible.builtin.shell: su -s /bin/sh  -c "placement-manage db sync" placement
+  become: true
+  delegate_to: "{{ groups['placement'][0] }}"
+  run_once: true
+...
