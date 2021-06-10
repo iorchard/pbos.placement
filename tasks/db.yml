@@ -17,7 +17,7 @@
     login_password: "{{ mariadb_root_password }}"
     name: "{{ os_service_name }}"
     host: "{{ item }}"
-    password: "{{ placement_password }}"
+    password: "{{ db_password }}"
     priv: "{{ os_service_name }}.*:ALL,GRANT"
   loop: "{{ openstack_mariadb_acl_cidr }}"
   no_log: true

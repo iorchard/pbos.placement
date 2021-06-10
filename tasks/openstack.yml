@@ -3,7 +3,7 @@
   openstack.cloud.identity_user:
     cloud: pbos
     name: "{{ os_service_name }}"
-    password: "{{ placement_password }}"
+    password: "{{ os_password }}"
     domain: default
     default_project: service
     state: present

@@ -6,8 +6,7 @@
     owner: "root"
     group: "root"
     mode: "0755"
-  loop:
-    - {dest: "/etc/init.d/placement-api"}
+  loop: "{{ os_service_init }}"
   become: true
 
 - name: Setup | template configuration
@@ -18,9 +17,7 @@
     group: "{{ os_service_name }}"
     mode: "0640"
     backup: true
-  loop:
-    - {dest: "/etc/placement/placement.conf"}
-    - {dest: "/etc/placement/placement-api-uwsgi-bind.ini"}
+  loop: "{{ os_service_conf }}"
   become: true
   notify:
     - systemctl restart service

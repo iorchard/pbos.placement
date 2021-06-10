@@ -11,10 +11,10 @@ project_domain_name = Default
 user_domain_name = Default
 project_name = service
 username = placement
-password = {{ placement_password }}
+password = {{ os_password }}
 [oslo_policy]
 policy_dirs = /etc/placement/policy.d
 [placement]
 [placement_database]
-connection = mysql+pymysql://placement:{{ placement_password }}@{{ keepalived_vip }}/placement
+connection = mysql+pymysql://{{ os_service_name }}:{{ db_password }}@{{ keepalived_vip }}/{{ os_service_name }}
 [profiler]

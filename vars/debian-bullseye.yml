@@ -19,8 +19,12 @@ osbpo_repos:
 packages:
   - placement-api
 
+os_service_init:
+  - {dest: "/etc/init.d/placement-api"}
+
 os_service_conf: 
-  - { dest: "/etc/placement/placement.conf" }
+  - {dest: "/etc/placement/placement.conf"}
+  - {dest: "/etc/placement/placement-api-uwsgi-bind.ini"}
 
 os_systemd_service_name: "placement-api"
 ...

@@ -2,7 +2,8 @@
 openstack_release: "wallaby"
 keepalived_vip: ""
 os_service_name: "placement"
-placement_password: ""
+db_password: "{{ placement_password }}"
+os_password: "{{ placement_password }}"
 placement_port: 8778
 keystone_port: 5000
 memcached_port: 11211
