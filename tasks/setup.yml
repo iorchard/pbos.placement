@@ -19,6 +19,7 @@
     backup: true
   loop: "{{ os_service_conf }}"
   become: true
+  changed_when: true
   notify:
     - systemctl restart service
 

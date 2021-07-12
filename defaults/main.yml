@@ -7,4 +7,9 @@ os_password: "{{ placement_password }}"
 placement_port: 8778
 keystone_port: 5000
 memcached_port: 11211
+os_endpoint_interface:
+  - public
+  - internal
+  - admin
+placement_api_processes: 4
 ...

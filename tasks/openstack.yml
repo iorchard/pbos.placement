@@ -24,7 +24,7 @@
   openstack.cloud.catalog_service:
     cloud: pbos
     name: "{{ os_service_name }}"
-    service_type: "{{ os_service_name }}"
+    service_type: "placement"
     description: OpenStack Placement API Service
     state: present
   delegate_to: "{{ groups['keystone'][0] }}"
@@ -38,10 +38,7 @@
     url: "http://{{ keepalived_vip }}:{{ placement_port }}"
     region: RegionOne
     state: present
-  loop:
-    - public
-    - internal
-    - admin
+  loop: "{{ os_endpoint_interface }}"
   delegate_to: "{{ groups['keystone'][0] }}"
   run_once: true
 ...
