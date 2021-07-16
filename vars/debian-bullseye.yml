@@ -29,5 +29,6 @@ os_service_conf:
   - {dest: "/etc/placement/placement-api-uwsgi.ini"}
   - {dest: "/etc/placement/placement-api-uwsgi-bind.ini"}
 
-os_systemd_service_name: "placement-api"
+os_systemd_service_name: 
+  - placement-api.service
 ...
