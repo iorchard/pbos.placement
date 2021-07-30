@@ -1,10 +1,14 @@
 ---
 - name: Stop | import common tasks
-  tags: placement
+  tags:
+    - placement
+    - openstack
   ansible.builtin.import_tasks: "common.yml"
 
 - name: Stop | stop service
-  tags: placement
+  tags:
+    - placement
+    - openstack
   block:
     - name: Stop | stop service
       ansible.builtin.service:
