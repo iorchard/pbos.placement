@@ -26,10 +26,11 @@ packages:
 os_service_init:
   - {dest: "/etc/init.d/placement-api"}
 
+os_conf_dir: "/etc/placement"
 os_service_conf: 
-  - {dest: "/etc/placement/placement.conf"}
-  - {dest: "/etc/placement/placement-api-uwsgi.ini"}
-  - {dest: "/etc/placement/placement-api-uwsgi-bind.ini"}
+  - {dest: "{{ os_conf_dir }}/placement.conf"}
+  - {dest: "{{ os_conf_dir }}/placement-api-uwsgi.ini"}
+  - {dest: "{{ os_conf_dir }}/placement-api-uwsgi-bind.ini"}
 
 os_systemd_service_name: 
   - placement-api.service
