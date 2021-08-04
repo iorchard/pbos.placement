@@ -1,0 +1,25 @@
+---
+apt_state: "latest"
+prereq_pkgs:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gpg
+  - openstack-pkg-tools
+
+packages:
+  - placement-common
+  - placement-api
+  - python3-osc-placement
+
+os_service_init:
+  - {dest: "/etc/init.d/placement-api"}
+
+os_conf_dir: "/etc/placement"
+os_service_conf: 
+  - {dest: "{{ os_conf_dir }}/placement.conf"}
+  - {dest: "/etc/apache2/sites-available/placement-api.conf"}
+
+os_systemd_service_name: 
+  - apache2.service
+...
