@@ -8,7 +8,6 @@
     mode: "0755"
   loop: "{{ os_service_init }}"
   become: true
-  when: ansible_distribution == "Debian"
 
 - name: Setup | template configuration
   ansible.builtin.template:
@@ -17,7 +16,7 @@
     owner: "root"
     group: "{{ os_service_name }}"
     mode: "0640"
-    backup: true
+    backup: false
   loop: "{{ os_service_conf }}"
   become: true
   changed_when: true

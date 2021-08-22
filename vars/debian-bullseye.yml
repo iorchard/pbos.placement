@@ -1,5 +1,5 @@
 ---
-apt_state: "latest"
+pkg_state: "latest"
 prereq_pkgs:
   - apt-transport-https
   - ca-certificates
@@ -22,6 +22,8 @@ osbpo_repos:
 packages:
   - placement-api
   - python3-osc-placement
+
+mariadb_service_socket: "/run/mysqld/mysqld.sock"
 
 os_service_init:
   - {dest: "/etc/init.d/placement-api"}

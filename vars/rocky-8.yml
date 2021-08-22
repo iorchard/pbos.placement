@@ -1,26 +1,24 @@
 ---
 pkg_state: "latest"
 prereq_pkgs:
-  - apt-transport-https
   - ca-certificates
   - curl
-  - gpg
-  - openstack-pkg-tools
 
 packages:
-  - placement-common
-  - placement-api
+  - openstack-placement-api
   - python3-osc-placement
 
-mariadb_service_socket: "/run/mysqld/mysqld.sock"
+openstack_repo_rpm: "https://www.rdoproject.org/repos/rdo-release.el8.rpm"
+
+mariadb_service_socket: "/var/lib/mysql/mysql.sock"
 
 os_service_init: []
 
 os_conf_dir: "/etc/placement"
 os_service_conf: 
   - {dest: "{{ os_conf_dir }}/placement.conf"}
-  - {dest: "/etc/apache2/sites-available/placement-api.conf"}
+  - {dest: "/etc/httpd/conf.d/00-placement-api.conf"}
 
 os_systemd_service_name: 
-  - apache2.service
+  - httpd.service
 ...

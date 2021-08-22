@@ -24,5 +24,4 @@
 
 - name: Main | include openstack tasks
   ansible.builtin.include_tasks: "openstack.yml"
-
 ...
