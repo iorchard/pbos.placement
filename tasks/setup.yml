@@ -23,6 +23,12 @@
   notify:
     - systemctl restart service
 
+- name: Setup | create db tables
+  ansible.builtin.shell: su -s /bin/sh  -c "placement-manage db sync" placement
+  become: true
+  delegate_to: "{{ groups['placement'][0] }}"
+  run_once: true
+
 - name: Setup | flush handlers
   ansible.builtin.meta: flush_handlers
 
@@ -32,10 +38,4 @@
     state: "started"
   become: true
   when: ansible_distribution == "Ubuntu"
-
-- name: Setup | create db tables
-  ansible.builtin.shell: su -s /bin/sh  -c "placement-manage db sync" placement
-  become: true
-  delegate_to: "{{ groups['placement'][0] }}"
-  run_once: true
 ...

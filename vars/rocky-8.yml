@@ -5,6 +5,7 @@ prereq_pkgs:
   - curl
 
 packages:
+  - openstack-placement-common
   - openstack-placement-api
   - python3-osc-placement
 
